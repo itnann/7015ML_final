@@ -1,27 +1,27 @@
 # Medical Visual Question Answering with LoRA Fine-Tuning on LLaVA
 
 This project explores **medical visual question answering (Medical VQA)** on the **VQA-RAD** dataset by fine-tuning **LLaVA-1.5-7B** with **LoRA**.  
-A **ResNet50 + LSTM** model is also included as a baseline for comparison.
+A **ResNet50 + LSTM** model is also implemented as a baseline for comparison.
 
-The main goal is to investigate how a vision-language model can answer radiology-related questions from medical images, and to compare its performance with a more traditional multimodal baseline.
+The project focuses on how a vision-language model can answer radiology-related questions from medical images, and compares its performance with a more traditional multimodal approach.
 
 ---
 
 ## Overview
 
-Medical Visual Question Answering is a multimodal task where a model must understand:
+Medical Visual Question Answering is a multimodal task in which a model must understand:
 
 - a **medical image**
-- a **natural language question** about that image
+- a **natural language question**
 - and generate the correct **answer**
 
 In this project, I:
 
 - used the **VQA-RAD** dataset for medical VQA
-- fine-tuned **LLaVA-1.5-7B** using **LoRA**
+- fine-tuned **LLaVA-1.5-7B** with **LoRA**
 - implemented a **ResNet50 + LSTM** baseline
 - organized the workflow in notebooks for training, evaluation, and analysis
-- compared different approaches for answering radiology-related questions
+- explored the strengths and limitations of large vision-language models in medical image understanding
 
 ---
 
@@ -56,25 +56,28 @@ The baseline is used to compare a traditional multimodal architecture with the f
 
 ## Repository Structure
 
-The repository currently contains three notebooks and a README. :contentReference[oaicite:1]{index=1}
-
 ```text
 .
 ├── LLaVA.ipynb
 ├── analysis_LLavA.ipynb
 ├── cnn_Lstm.ipynb
 └── README.md
+```
+
+---
 
 ## File Description
 
-- **LLaVA.ipynb**
-   Main notebook for dataset preparation, formatting, and LoRA fine-tuning workflow for LLaVA.
-- **analysis_LLavA.ipynb**
-   Notebook for model inference, result analysis, and evaluation.
-- **cnn_Lstm.ipynb**
-   Baseline implementation using ResNet50 + LSTM.
+- **LLaVA.ipynb**  
+  Main notebook for dataset preparation, formatting, and LoRA fine-tuning workflow for LLaVA.
 
-------
+- **analysis_LLavA.ipynb**  
+  Notebook for model inference, result analysis, and evaluation.
+
+- **cnn_Lstm.ipynb**  
+  Baseline implementation using ResNet50 + LSTM.
+
+---
 
 ## Methodology
 
@@ -83,7 +86,6 @@ The repository currently contains three notebooks and a README. :contentReferenc
 The VQA-RAD dataset is prepared for multimodal training and evaluation.
 
 Typical steps include:
-
 - loading image-question-answer samples
 - formatting the data for LLaVA-style instruction tuning
 - splitting the dataset into training and testing subsets
@@ -94,7 +96,6 @@ Typical steps include:
 Instead of full fine-tuning, this project uses **LoRA (Low-Rank Adaptation)** to efficiently adapt **LLaVA-1.5-7B** to the medical VQA domain.
 
 Advantages of LoRA:
-
 - lower memory usage
 - fewer trainable parameters
 - faster experimentation
@@ -103,7 +104,6 @@ Advantages of LoRA:
 ### 3. Baseline Modeling
 
 A **ResNet50 + LSTM** architecture is used as a baseline:
-
 - **ResNet50** extracts visual features from medical images
 - **LSTM** processes the text question
 - the combined representation is used to predict the answer
@@ -111,17 +111,16 @@ A **ResNet50 + LSTM** architecture is used as a baseline:
 ### 4. Evaluation and Analysis
 
 The project includes a dedicated analysis notebook to:
-
 - run inference
 - inspect predictions
 - compare model outputs
 - analyze results qualitatively and/or quantitatively
 
-------
+---
 
 ## Project Workflow
 
-```
+```text
 VQA-RAD Dataset
       ↓
 Data preprocessing and formatting
@@ -135,7 +134,7 @@ Result analysis and comparison
 Baseline comparison with ResNet50 + LSTM
 ```
 
-------
+---
 
 ## Tech Stack
 
@@ -149,7 +148,7 @@ Baseline comparison with ResNet50 + LSTM
 - **Matplotlib**
 - **Torchvision**
 
-------
+---
 
 ## Key Features
 
@@ -160,7 +159,7 @@ Baseline comparison with ResNet50 + LSTM
 - Notebook-based experimentation and analysis
 - Practical multimodal AI project for research and portfolio presentation
 
-------
+---
 
 ## Results
 
@@ -168,13 +167,12 @@ You can update this section with your actual experiment results.
 
 ### Example Result Table
 
-| Model               | Split | Metric   | Score |
-| ------------------- | ----- | -------- | ----- |
-| LLaVA-1.5-7B + LoRA | Test  | Accuracy | XX.XX |
-| ResNet50 + LSTM     | Test  | Accuracy | XX.XX |
+| Model | Split | Metric | Score |
+|------|------|------|------|
+| LLaVA-1.5-7B + LoRA | Test | Accuracy | XX.XX |
+| ResNet50 + LSTM | Test | Accuracy | XX.XX |
 
 You can also include:
-
 - sample predictions
 - failure cases
 - qualitative comparisons
@@ -186,13 +184,13 @@ You can also include:
 - The ResNet50 + LSTM baseline provides a useful reference point for performance comparison.
 - Results can highlight the benefits and limitations of large vision-language models in medical image understanding.
 
-------
+---
 
 ## How to Run
 
 ### 1. Clone the repository
 
-```
+```bash
 git clone https://github.com/itnann/7015ML_final.git
 cd 7015ML_final
 ```
@@ -201,7 +199,7 @@ cd 7015ML_final
 
 You can install the required packages in a notebook or Python environment:
 
-```
+```bash
 pip install torch torchvision transformers datasets peft pandas numpy matplotlib
 ```
 
@@ -223,7 +221,7 @@ Suggested order:
 2. `analysis_LLavA.ipynb`
 3. `cnn_Lstm.ipynb`
 
-------
+---
 
 ## Reproducibility Notes
 
@@ -232,7 +230,7 @@ Suggested order:
 - GPU is recommended for fine-tuning and inference with LLaVA
 - Some outputs may depend on local checkpoints and runtime settings
 
-------
+---
 
 ## Limitations
 
@@ -241,7 +239,7 @@ Suggested order:
 - Medical VQA datasets are relatively small, so generalization may be limited
 - Open-ended medical question answering remains challenging
 
-------
+---
 
 ## Future Improvements
 
@@ -252,7 +250,7 @@ Suggested order:
 - Compare additional multimodal baselines
 - Improve repository organization for research reproducibility
 
-------
+---
 
 ## Why This Project Matters
 
@@ -272,7 +270,12 @@ It is a strong portfolio project for roles related to:
 - **multimodal systems**
 - **research-oriented model experimentation**
 
-AI / ML engineering
-LLM applications
-multimodal systems
-research-oriented model experimentation
+---
+
+## References
+
+- [VQA-RAD Dataset](https://huggingface.co/datasets/flaviagiammarino/vqa-rad)
+- [LLaVA-1.5-7B](https://huggingface.co/liuhaotian/llava-v1.5-7b)
+- LoRA / PEFT
+- ResNet50
+- LSTM
